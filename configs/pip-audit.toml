@@ -1,0 +1,25 @@
+# pip-audit Configuration
+# Vulnerability scanning for Python dependencies
+
+[tool.pip-audit]
+# List of vulnerability sources to check
+vulnerability_sources = ["pypi", "purl"]
+
+# Ignore specific vulnerabilities by ID (CVE/GHSA)
+# Example: ignored-vulns = ["GHSA-xxxx-yyyy-zzzz"]
+ignored_vulns = []
+
+# Ignore packages (by name)
+ignored_packages = []
+
+# Skip packages not installed (for when auditing lock files)
+skip_not_installed = false
+
+# Show descriptive report
+desc = true
+
+# Output format: json, csv, cyclonedx
+format = "json"
+
+# Report file location
+report_file = "artifacts/vulns_pip_audit.json"

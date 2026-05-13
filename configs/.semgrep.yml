@@ -1,0 +1,94 @@
+# Semgrep Configuration for ML Security Scanner
+# Advanced SAST rules for Python security
+
+rules:
+  - id: unsafe-yaml-load
+    pattern-either:
+      - patterns:
+          - pattern: |
+              yaml.load(...)
+          - pattern-not: |
+              yaml.load(..., Loader=yaml.SafeLoader)
+          - pattern-not: |
+              yaml.safe_load(...)
+    message: Unsafe YAML loading detected. Use yaml.safe_load() instead.
+    languages: [python]
+    severity: WARNING
+
+  - id: hardcoded-sql-string
+    pattern: |
+      ... = "SELECT ... WHERE ...
+    message: Potential hardcoded SQL string detected.
+    languages: [python]
+    severity: WARNING
+
+  - id: subprocess-without-shell-false
+    pattern: |
+      subprocess.run(...)
+    pattern-not: |
+      subprocess.run(..., shell=False, ...)
+    message: subprocess.run() should explicitly set shell=False for security.
+    languages: [python]
+    severity: WARNING
+
+  - id: pickle-usage-risk
+    pattern: |
+      pickle.loads(...)
+    message: pickle.loads() is unsafe. Validate input or use safer alternatives like json.
+    languages: [python]
+    severity: ERROR
+
+  - id: eval-usage-risk
+    pattern: |
+      eval(...)
+    message: "eval() is dangerous and should never be used. Use ast.literal_eval() or json.loads() instead."
+    languages: [python]
+    severity: ERROR
+
+  - id: exec-usage-risk
+    pattern: |
+      exec(...)
+    message: "exec() is dangerous and should never be used."
+    languages: [python]
+    severity: ERROR
+
+  - id: weak-hash-algorithm
+    pattern-either:
+      - pattern: |
+          hashlib.md5(...)
+      - pattern: |
+          hashlib.sha1(...)
+    message: Weak hash algorithm detected (MD5/SHA1). Use SHA256 or stronger.
+    languages: [python]
+    severity: WARNING
+
+  - id: insecure-random
+    pattern: |
+      random.choice(...)
+    message: random module is not cryptographically secure. Use secrets module instead.
+    languages: [python]
+    severity: WARNING
+
+  - id: hardcoded-credential
+    pattern-either:
+      - pattern: |
+          password = "..."
+      - pattern: |
+          api_key = "..."
+      - pattern: |
+          secret = "..."
+    message: Hardcoded credentials detected. Use environment variables or secrets manager.
+    languages: [python]
+    severity: ERROR
+
+  - id: debug-mode-enabled
+    pattern-either:
+      - pattern: |
+          debug=True
+      - pattern: |
+          DEBUG=True
+      - pattern: |
+          app.run(debug=True)
+    message: Debug mode should not be enabled in production.
+    languages: [python]
+    severity: WARNING

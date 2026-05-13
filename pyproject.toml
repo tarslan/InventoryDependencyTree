@@ -1,0 +1,91 @@
+[build-system]
+requires = ["setuptools>=82.0.1", "wheel>=0.46.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml-security-scanner"
+version = "0.1.0"
+description = "ML/DL Program Security Pipeline: Dependency Tree, Vulnerability Scanning, SBOM Generation, Integrity/Provenance Verification"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    { name = "Research Team", email = "research@example.com" }
+]
+keywords = [
+    "security", "dependency-scanning", "sbom", "vulnerability", 
+    "integrity", "provenance", "machine-learning", "deep-learning"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+dependencies = [
+    "pip>=26.0.1",
+    "setuptools>=82.0.1",
+    "wheel>=0.46.3"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0"
+]
+security = [
+    "pip-audit>=2.6.0",
+    "bandit>=1.7.5",
+    "semgrep>=1.45.0"
+]
+sbom = [
+    "cyclonedx-bom>=4.0.0",
+    "cyclonedx-python>=4.0.0"
+]
+
+[project.urls]
+Repository = "https://github.com/example/ml-security-scanner"
+Documentation = "https://github.com/example/ml-security-scanner#readme"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages]
+find = { where = ["src"] }
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # Pyflakes
+    "I",      # isort
+    "N",      # pep8-naming
+    "S",      # flake8-bandit (security)
+]
+ignore = ["E501"]  # line too long (handled by black)
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.bandit]
+exclude_dirs = [".venv", "tests"]
+tests = ["B201", "B301", "B302", "B303", "B304", "B305", "B306"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v --tb=short"
