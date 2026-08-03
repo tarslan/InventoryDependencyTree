@@ -135,17 +135,17 @@ Despite these limitations, the proposed research aims to provide a scalable and 
 
 ## **5. Research Questions**
 
-## How can dependencies and native binary components embedded within machine learning or deep learning ecosystems be systematically identified and analyzed?
+#### 1 - How can dependencies and native binary components embedded within machine learning or deep learning ecosystems be systematically identified and analyzed?
 
-## How effective are traditional software security techniques when applied to machine learning frameworks and native libraries?
+#### 2 - How effective are traditional software security techniques when applied to machine learning frameworks and native libraries?
 
-## Can binary reverse engineering techniques recover meaningful structural and behavioral information from machine learning binaries?
+#### 3 - Can binary reverse engineering techniques recover meaningful structural and behavioral information from machine learning binaries?
 
-## How can serialized machine learning models and computational graphs be inspected for hidden malicious functionality?
+#### 4 - How can serialized machine learning models and computational graphs be inspected for hidden malicious functionality?
 
-## Can cross-layer interaction modeling improve vulnerability detection in multilayer ML systems?
+#### 5 - Can cross-layer interaction modeling improve vulnerability detection in multilayer ML systems?
 
-## How can automated testing and mutation-analysis techniques improve vulnerability discovery in machine learning frameworks?
+#### 6 - How can automated testing and mutation-analysis techniques improve vulnerability discovery in machine learning frameworks?
 
 ##  **6. Threat Model for Machine Learning Software Ecosystems**
 
