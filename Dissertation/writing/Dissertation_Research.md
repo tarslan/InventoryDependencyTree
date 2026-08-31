@@ -17,7 +17,7 @@ The proposed system will further incorporate machine learning techniques to clas
 
 The ultimate objective of this research is to develop a scalable, automated, and holistic security analysis framework capable of improving the security posture, transparency, and trustworthiness of modern artificial intelligence software ecosystems.
 
-**Keywords:** Machine Learning Security, AI Software Assurance, Reverse Engineering, Binary Analysis, TensorFlow, Keras, NumPy, SBOM, Software Supply Chain Security, Cross-Layer Threat Modeling, Vulnerability Detection, Serialized Model Security
+**Keywords:** Machine Learning, Deep Learning, Machine Learning Security, AI Software Assurance, Reverse Engineering, Binary Analysis, TensorFlow, Keras, NumPy, SBOM, Software Supply Chain Security, Cross-Layer Threat Modeling, Vulnerability Detection, Serialized Model Security
 
 ## **1. Introduction**
 
@@ -67,25 +67,25 @@ Existing approaches largely analyze machine learning software layers independent
 
 This research focuses on the security analysis of modern machine learning software ecosystems that rely on Python-based deep learning frameworks and native computational libraries. The primary objective is to investigate how vulnerabilities, unsafe execution behaviors, and hidden attack surfaces propagate across multiple software layers, including:
 
-- application code,
+- application code
 
-- machine learning frameworks,
+- machine learning frameworks
 
-- serialized computational graphs,
+- serialized computational graphs
 
-- native binaries,
+- native binaries
 
-- runtime environments,
+- runtime environments
 
-- and infrastructure components.
+- and infrastructure components
 
 The scope of this dissertation is limited primarily to machine learning and deep learning ecosystems utilizing:
 
-- TensorFlow,
+- TensorFlow
 
-- Keras,
+- Keras
 
-- NumPy,
+- NumPy
 
 - and related Python-based machine learning dependencies.
 
@@ -93,39 +93,39 @@ The experimental analysis emphasizes environments in which high-level Python API
 
 The proposed research specifically investigates:
 
-- dependency intelligence,
+- dependency intelligence
 
-- software bill of materials (SBOM) generation,
+- software bill of materials (SBOM) generation
 
-- software supply-chain analysis,
+- software supply-chain analysis
 
-- vulnerability identification,
+- vulnerability identification
 
-- binary extraction,
+- binary extraction
 
-- reverse engineering of native machine learning components,
+- reverse engineering of native machine learning components
 
-- serialized model inspection,
+- serialized model inspection
 
-- runtime behavior analysis,
+- runtime behavior analysis
 
-- and cross-layer vulnerability propagation.
+- and cross-layer vulnerability propagation
 
 The research further focuses on identifying how vulnerabilities propagate across interconnected machine learning software layers rather than analyzing isolated software components independently.
 
 The dissertation does not attempt to fully address all aspects of deep learning security. In particular, the following topics are considered outside the primary scope of this research:
 
-- adversarial robustness optimization,
+- adversarial robustness optimization
 
-- model accuracy improvement,
+- model accuracy improvement
 
-- federated learning security,
+- federated learning security
 
-- cryptographic privacy-preserving machine learning,
+- cryptographic privacy-preserving machine learning
 
-- side-channel attacks against hardware accelerators,
+- side-channel attacks against hardware accelerators
 
-- and formal verification of neural network correctness.
+- and formal verification of neural network correctness
 
 Although adversarial machine learning literature is reviewed for contextual purposes, the primary emphasis of this research is software ecosystem security and multilayer software assurance rather than adversarial perturbation defense techniques.
 
@@ -143,27 +143,28 @@ Despite these limitations, the proposed research aims to provide a scalable and 
 
 #### 4 - How can serialized machine learning models and computational graphs be inspected for hidden malicious functionality?
 
-#### 5 - Can cross-layer interaction modeling improve vulnerability detection in multilayer ML systems?
+#### 5 - Can cross-layer interaction modeling improve vulnerability detection in multilayer ML/DL systems?
 
 #### 6 - How can automated testing and mutation-analysis techniques improve vulnerability discovery in machine learning frameworks?
 
 ##  **6. Threat Model for Machine Learning Software Ecosystems**
 
+
 **6.1 Overview**
 
 Modern deep learning or machine learning (ML) software ecosystems consist of multiple interconnected layers, including application code, machine learning frameworks, serialized models, native binaries, runtime environments, hardware acceleration components, and external software dependencies. These multilayer architectures introduce complex attack surfaces that extend beyond traditional software systems.
 
-Unlike conventional applications, ML systems frequently rely on:
+Unlike conventional applications, ML / DL systems frequently rely on:
 
-- dynamically loaded native libraries,
+- dynamically loaded native libraries
 
-- computational graph serialization,
+- computational graph serialization
 
-- hardware-specific execution paths,
+- hardware-specific execution paths
 
-- third-party package repositories,
+- third-party package repositories
 
-- and externally distributed pretrained models.
+- and externally distributed pretrained models
 
 As a result, vulnerabilities may originate from multiple layers simultaneously and propagate across abstraction boundaries.
 
@@ -171,21 +172,21 @@ This research adopts a holistic threat-modeling approach to characterize threats
 
 Consequently, machine learning security must be approached as an ecosystem-level assurance problem rather than a single-layer software analysis problem.
 
-**6.2 ML Ecosystem Layer Model**
+**6.2 ML / DL Ecosystem Layer Model**
 
-Machine learning software ecosystems operate across multiple interconnected software and runtime layers. Unlike conventional software systems that are often analyzed primarily at the application layer, modern machine learning environments rely heavily on interactions between:
+Machine learning and Deep learning software ecosystems operate across multiple interconnected software and runtime layers. Unlike conventional software systems that are often analyzed primarily at the application layer, modern machine learning environments rely heavily on interactions between:
 
-- high-level application code,
+- high-level application code
 
-- machine learning frameworks,
+- machine learning frameworks
 
-- serialized computational graphs,
+- serialized computational graphs
 
-- native binary libraries,
+- native binary libraries
 
-- runtime execution environments,
+- runtime execution environments
 
-- and infrastructure components.
+- and infrastructure components
 
 These multilayer interactions introduce complex attack surfaces and trust boundaries that extend beyond traditional software security models. Vulnerabilities originating within one layer may propagate across other layers through dependency relationships, runtime interactions, serialized model execution, or native library invocation.
 
@@ -201,77 +202,77 @@ The threat model considers several categories of adversaries:
 
 Attackers may publish:
 
-- compromised Python packages,
+- compromised Python packages
 
-- malicious wheel distributions,
+- malicious wheel distributions
 
-- or tampered dependency updates.
+- or tampered dependency updates
 
 These attacks may target:
 
-- PyPI repositories,
+- PyPI repositories
 
-- dependency resolution mechanisms,
+- dependency resolution mechanisms
 
-- and transitive package chains.
+- and transitive package chains
 
 **6.3.2 Supply-Chain Attackers**
 
 Adversaries may compromise:
 
-- dependency repositories,
+- dependency repositories
 
-- CI/CD pipelines,
+- CI/CD pipelines
 
-- model-sharing platforms,
+- model-sharing platforms
 
-- or build environments.
+- or build environments
 
 Potential impacts include:
 
-- insertion of malicious binaries,
+- insertion of malicious binaries
 
-- dependency poisoning,
+- dependency poisoning
 
-- or hidden backdoors.
+- or hidden backdoors
 
 **6.3.3 Malicious Model Providers**
 
 Attackers may distribute:
 
-- malicious TensorFlow SavedModel artifacts,
+- malicious TensorFlow SavedModel artifacts
 
-- poisoned pretrained models,
+- poisoned pretrained models
 
-- or serialized computational graphs containing hidden functionality.
+- or serialized computational graphs containing hidden functionality
 
 Recent research demonstrates that TensorFlow models may abuse hidden APIs capable of:
 
-- file access,
+- file access
 
-- networking,
+- networking
 
-- and arbitrary code execution.
+- and arbitrary code execution
 
 **6.3.4 Adversarial Users**
 
 Attackers may craft malicious inputs intended to:
 
-- trigger memory corruption,
+- trigger memory corruption
 
-- exploit unsafe native operations,
+- exploit unsafe native operations
 
-- or manipulate inference behavior.
+- or manipulate inference behavior
 
 **6.3.5 Insider Threats**
 
 Internal developers or administrators may:
 
-- introduce vulnerable dependencies,
+- introduce vulnerable dependencies
 
-- disable security controls,
+- disable security controls
 
-- or deploy compromised models.
+- or deploy compromised models
 
 **6.4 Threat Surfaces**
 
@@ -281,95 +282,95 @@ The proposed threat model identifies the following primary attack surfaces.
 
 ML applications depend heavily on:
 
-- TensorFlow,
+- TensorFlow
 
-- Keras,
+- Keras
 
-- NumPy,
+- NumPy
 
-- PyTorch,
+- PyTorch
 
-- and numerous transitive dependencies.
+- and numerous transitive dependencies
 
 Threats include:
 
-- dependency confusion,
+- dependency confusion
 
-- typosquatting,
+- typosquatting
 
-- compromised packages,
+- compromised packages
 
-- and vulnerable transitive libraries.
+- and vulnerable transitive libraries
 
 **6.4.2 Native Binary Components**
 
 Machine learning frameworks rely extensively on:
 
-- compiled C/C++ binaries,
+- compiled C/C++ binaries
 
-- dynamically linked libraries,
+- dynamically linked libraries
 
-- GPU kernels,
+- GPU kernels
 
-- and hardware acceleration modules.
+- and hardware acceleration modules
 
 Threats include:
 
-- buffer overflows,
+- buffer overflows
 
-- integer overflows,
+- integer overflows
 
-- use-after-free vulnerabilities,
+- use-after-free vulnerabilities
 
-- and unsafe memory operations.
+- and unsafe memory operations
 
 **6.4.3 Serialized Models and Computational Graphs**
 
 Modern machine learning frameworks frequently utilize serialized model artifacts and computational graph representations to support portability, deployment, distributed execution, interoperability, and runtime optimization. These serialized artifacts allow trained models to be transferred across systems and executed in heterogeneous environments without requiring direct access to the original training code.
 
-Frameworks such as TensorFlow, Keras, PyTorch, and ONNX rely on serialization mechanisms that encapsulate:
+Frameworks such as TensorFlow, Keras, PyTorch, and ONNX (Open Neural Network Exchange) rely on serialization mechanisms that encapsulate:
 
-- model architectures,
+- model architectures
 
-- computational graphs,
+- computational graphs
 
-- tensor operations,
+- tensor operations
 
-- operators,
+- operators
 
-- metadata,
+- metadata
 
-- weights,
+- weights
 
-- execution descriptors,
+- execution descriptors
 
-- and runtime configuration information.
+- and runtime configuration information
 
-In TensorFlow, for example, the SavedModel format stores graph definitions, variable states, signatures, and execution metadata necessary for deployment and inference. Similarly, ONNX representations provide standardized graph-based interchange formats that enable model portability across different frameworks and runtime environments.
+In TensorFlow, for example, the SavedModel format stores graph definitions, variable states, signatures, and execution metadata necessary for deployment and inference. Similarly, ONNX (Open Neural Network Exchange) representations provide standardized graph-based interchange formats that enable model portability across different frameworks and runtime environments.
 
 Computational graphs define execution flows that describe how tensor operations are evaluated and propagated throughout the machine learning pipeline. These graphs may include:
 
-- mathematical operators,
+- mathematical operators
 
-- data transformation functions,
+- data transformation functions
 
-- execution dependencies,
+- execution dependencies
 
-- hardware optimization directives,
+- hardware optimization directives
 
-- and runtime execution paths.
+- and runtime execution paths
 
 Because serialized computational graphs abstract execution behavior into portable representations, they frequently span multiple software layers, including:
 
-- application-level APIs,
+- application-level APIs
 
-- framework execution engines,
+- framework execution engines
 
-- native binary libraries,
+- native binary libraries
 
-- hardware acceleration runtimes,
+- hardware acceleration runtimes
 
-- and operating system interfaces.
+- and operating system interfaces
 
 Serialized model artifacts therefore represent a critical architectural component of modern machine learning ecosystems. Although these mechanisms improve scalability, portability, and deployment efficiency, they also introduce additional complexity and expand the overall software attack surface.
 
@@ -381,47 +382,47 @@ Although serialized machine learning artifacts improve portability, interoperabi
 
 Recent research demonstrates that serialized machine learning artifacts such as TensorFlow SavedModel files may expose hidden attack surfaces capable of performing:
 
-- unauthorized file access,
+- unauthorized file access
 
-- network communication,
+- network communication
 
-- runtime API invocation,
+- runtime API invocation
 
-- arbitrary execution behaviors,
+- arbitrary execution behaviors
 
-- and hidden operator execution.
+- and hidden operator execution
 
 These risks are amplified because serialized graphs frequently operate across multiple software layers, including:
 
-- application code,
+- application code
 
-- framework execution engines,
+- framework execution engines
 
-- native libraries,
+- native libraries
 
-- hardware acceleration runtimes,
+- hardware acceleration runtimes
 
-- and infrastructure environments.
+- and infrastructure environments
 
 As a result, malicious or tampered model artifacts may propagate unsafe behavior throughout the machine learning ecosystem while remaining difficult to detect through traditional source-level security analysis techniques.
 
 Potential threats associated with serialized model artifacts include:
 
-- malicious graph execution,
+- malicious graph execution
 
-- embedded executable behaviors,
+- embedded executable behaviors
 
-- hidden operators,
+- hidden operators
 
-- unauthorized runtime invocation,
+- unauthorized runtime invocation
 
-- model tampering,
+- model tampering
 
-- poisoned pretrained models,
+- poisoned pretrained models
 
-- unsafe deserialization,
+- unsafe deserialization
 
-- and abuse of undocumented framework APIs.
+- and abuse of undocumented framework APIs
 
 An attacker may, for example, distribute a pretrained model containing manipulated computational graphs designed to trigger unexpected runtime behavior during inference or deployment. Because many machine learning workflows rely on externally sourced pretrained models obtained from repositories, model hubs, or third-party providers, the integrity and trustworthiness of serialized artifacts become critical security concerns.
 
@@ -429,15 +430,15 @@ Additional risks arise from the complexity of modern computational graph executi
 
 Serialized model security therefore represents an important component of machine learning software assurance. Effective security analysis requires inspection not only of application code and dependencies, but also of:
 
-- graph structures,
+- graph structures
 
-- execution operators,
+- execution operators
 
-- runtime interactions,
+- runtime interactions
 
-- metadata relationships,
+- metadata relationships
 
-- and hidden execution paths embedded within serialized machine learning artifacts.
+- and hidden execution paths embedded within serialized machine learning artifacts
 
 For these reasons, the proposed Unified Multilayer Security Analysis Framework (UMSAF) incorporates serialized model inspection and computational graph analysis as core components of its multilayer security analysis methodology.
 
@@ -445,35 +446,35 @@ For these reasons, the proposed Unified Multilayer Security Analysis Framework (
 
 Threats may arise during:
 
-- model loading,
+- model loading
 
-- training,
+- training
 
-- inference,
+- inference
 
-- GPU execution,
+- GPU execution
 
-- and distributed computation.
+- and distributed computation
 
 Potential attacks include:
 
-- runtime manipulation,
+- runtime manipulation
 
-- execution hijacking,
+- execution hijacking
 
-- and silent computational corruption.
+- and silent computational corruption
 
 **6.4.6 Operating System and Infrastructure Layer**
 
 Underlying infrastructure may introduce:
 
-- insecure system libraries,
+- insecure system libraries
 
-- vulnerable drivers,
+- vulnerable drivers
 
-- container escape vulnerabilities,
+- container escape vulnerabilities
 
-- or cloud misconfigurations.
+- or cloud misconfigurations
 
 **6.5 Threat Categories**
 
@@ -483,67 +484,67 @@ The threat model categorizes threats into the following classes.
 
 Examples:
 
-- compromised dependencies,
+- compromised dependencies
 
-- malicious wheel files,
+- malicious wheel files
 
-- dependency poisoning.
+- dependency poisoning
 
 **6.5.2 Native Memory Corruption**
 
 Examples:
 
-- heap overflows,
+- heap overflows
 
-- stack corruption,
+- stack corruption
 
-- use-after-free conditions,
+- use-after-free conditions
 
-- integer overflows.
+- integer overflows
 
 **6.5.3 Malicious Model Artifacts**
 
 Examples:
 
-- poisoned models,
+- poisoned models
 
-- malicious SavedModel files,
+- malicious SavedModel files
 
-- hidden executable behaviors.
+- hidden executable behaviors
 
 **6.5.4 Silent Computational Failures**
 
 Examples:
 
-- incorrect inference results,
+- incorrect inference results
 
-- hidden training corruption,
+- hidden training corruption
 
-- numerical instability,
+- numerical instability
 
-- silent framework bugs.
+- silent framework bugs
 
 **6.5.5 Adversarial ML Attacks**
 
 Examples:
 
-- adversarial inputs,
+- adversarial inputs
 
-- model extraction,
+- model extraction
 
-- inference manipulation,
+- inference manipulation
 
-- evasion attacks.
+- evasion attacks
 
 **6.5.6 Runtime and Infrastructure Threats**
 
 Examples:
 
-- GPU runtime exploitation,
+- GPU runtime exploitation
 
-- insecure distributed execution,
+- insecure distributed execution
 
-- cloud infrastructure compromise.
+- cloud infrastructure compromise
 
 **6.6 Trust Boundaries**
 
@@ -559,11 +560,11 @@ The framework identifies several critical trust boundaries:
 
 These boundaries represent locations where:
 
-- assumptions may fail,
+- assumptions may fail
 
-- privilege transitions occur,
+- privilege transitions occur
 
-- and vulnerabilities may propagate.
+- and vulnerabilities may propagate
 
 **6.7 Threat Propagation Across Layers**
 
@@ -610,21 +611,21 @@ The threat model directly motivates the design of the proposed framework.
 
 Specifically, UMSAF will:
 
-- analyze dependency chains,
+- analyze dependency chains
 
-- inspect native binaries,
+- inspect native binaries
 
-- reverse engineer ML components,
+- reverse engineer ML components
 
-- inspect serialized models,
+- inspect serialized models
 
-- map cross-layer interactions,
+- map cross-layer interactions
 
-- and identify threat propagation paths.
+- and identify threat propagation paths
 
 This enables comprehensive visibility into vulnerabilities that are otherwise hidden within modern machine learning software ecosystems.
 
-## **6.10 ML Software Ecosystem Layer Model**
+## **6.10 ML / DL Software Ecosystem Layer Model**
 
 The proposed research models machine learning software ecosystems as multilayer architectures composed of interconnected application, framework, runtime, binary, and infrastructure components. This conceptual model provides the foundation for analyzing how vulnerabilities propagate across machine learning ecosystems and how hidden execution behavior emerges across multiple abstraction layers.
 
@@ -648,7 +649,7 @@ The **Application Layer** contains developer-written Python code, external APIs,
 
 The **ML Framework Layer** includes frameworks such as TensorFlow, Keras, PyTorch, and NumPy. These frameworks provide abstractions for tensor computation, model training, graph execution, optimization, and deployment. Because these frameworks expose high-level APIs while internally relying on native implementations, vulnerabilities within lower layers may remain hidden from application developers.
 
-The **Serialization and Computational Graph Layer** includes serialized model artifacts such as TensorFlow SavedModel files, ONNX representations, computational graphs, operators, metadata, and execution descriptors. These artifacts may encapsulate executable logic and hidden runtime behaviors, thereby introducing additional attack surfaces associated with model tampering, malicious serialization, hidden operators, and unauthorized execution paths.
+The **Serialization and Computational Graph Layer** includes serialized model artifacts such as TensorFlow SavedModel files, ONNX (Open Neural Network Exchange) representations, computational graphs, operators, metadata, and execution descriptors. These artifacts may encapsulate executable logic and hidden runtime behaviors, thereby introducing additional attack surfaces associated with model tampering, malicious serialization, hidden operators, and unauthorized execution paths.
 
 The **Native Binary Layer** contains compiled C and C++ libraries, dynamically linked modules, numerical computation engines, tensor operation implementations, and hardware interaction components. This layer represents one of the most critical security boundaries because it frequently contains memory-unsafe code capable of introducing vulnerabilities such as buffer overflows, integer overflows, use-after-free conditions, and unsafe memory operations.
 
@@ -921,7 +922,7 @@ This dissertation addresses the identified gaps by proposing a **unified multila
 Unlike prior work, this research:
 
 ✔ Demonstrates the **limitations of existing tools using empirical evidence**  
-✔ Targets **native components within ML frameworks**  
+✔ Targets **native components within ML / DL frameworks**  
 ✔ Models **interactions across software layers**  
 ✔ Combines **software engineering, cybersecurity, and machine learning techniques**  
 ✔ Provides a **scalable and automated approach** for securing ML systems
@@ -936,37 +937,37 @@ As machine learning frameworks became widely adopted in production environments,
 
 More recent work further expanded the field toward lifecycle-oriented machine learning security, incorporating:
 
-- dependency management,
+- dependency management
 
-- model distribution,
+- model distribution
 
-- serialized model security,
+- serialized model security
 
-- runtime behavior analysis,
+- runtime behavior analysis
 
-- binary reverse engineering,
+- binary reverse engineering
 
-- and software assurance methodologies.
+- and software assurance methodologies
 
 This evolution demonstrates that machine learning security has transitioned from a narrow focus on adversarial robustness into a broader discipline encompassing software engineering, cybersecurity, software supply-chain analysis, and runtime system assurance.
 
-**8.12 Security Vulnerabilities in ML Frameworks**
+**8.12 Security Vulnerabilities in ML /DL Frameworks**
 
 Machine learning frameworks such as TensorFlow, Keras, PyTorch, and NumPy contain large native codebases implemented primarily in C and C++ for performance optimization. While these native implementations enable efficient numerical computation and hardware acceleration, they also introduce traditional software security risks commonly associated with low-level systems programming.
 
 Recent studies have identified numerous vulnerabilities within machine learning frameworks, including:
 
-- buffer overflows,
+- buffer overflows
 
-- integer overflows,
+- integer overflows
 
-- use-after-free conditions,
+- use-after-free conditions
 
-- NULL pointer dereferences,
+- NULL pointer dereferences
 
-- memory corruption vulnerabilities,
+- memory corruption vulnerabilities
 
-- and improper input validation.
+- and improper input validation
 
 Many of these vulnerabilities originate within native components responsible for tensor operations, serialization, graph execution, and GPU acceleration. Research also demonstrates that vulnerabilities frequently propagate through transitive dependency chains and embedded third-party libraries.
 
@@ -980,65 +981,65 @@ Deep learning systems exhibit unique failure characteristics that differ substan
 
 Recent empirical studies identified numerous silent bugs within TensorFlow and Keras systems. These bugs include:
 
-- incorrect tensor computations,
+- incorrect tensor computations
 
-- silent training corruption,
+- silent training corruption
 
-- numerical instability,
+- numerical instability
 
-- inconsistent inference behavior,
+- inconsistent inference behavior
 
-- and invalid gradient calculations.
+- and invalid gradient calculations
 
 Silent failures are particularly dangerous because machine learning outputs are often probabilistic and difficult to validate manually. Consequently, incorrect behavior may remain undetected for extended periods while still producing apparently plausible results.
 
 Additional studies demonstrate that runtime behaviors in machine learning frameworks may vary across:
 
-- hardware configurations,
+- hardware configurations
 
-- compiler optimizations,
+- compiler optimizations
 
-- execution backends,
+- execution backends
 
-- and distributed processing environments.
+- and distributed processing environments
 
 These findings suggest that conventional software testing techniques are insufficient for identifying many classes of machine learning failures. As a result, runtime analysis, behavioral tracing, anomaly detection, and cross-layer monitoring become essential components of ML security assurance.
 
-**8.14 Reverse Engineering of ML Systems**
+**8.14 Reverse Engineering of ML / DL Systems**
 
 Reverse engineering techniques have traditionally been applied to malware analysis, binary inspection, exploit analysis, and software recovery. These techniques include:
 
-- disassembly,
+- disassembly
 
-- decompilation,
+- decompilation
 
-- control-flow reconstruction,
+- control-flow reconstruction
 
-- symbolic analysis,
+- symbolic analysis
 
-- and dynamic tracing.
+- and dynamic tracing
 
 Recent research demonstrates that these techniques are increasingly applicable to machine learning systems and deep learning frameworks. Studies show that compiled ML binaries can reveal:
 
-- neural network structures,
+- neural network structures
 
-- operator implementations,
+- operator implementations
 
-- computational graphs,
+- computational graphs
 
-- and execution behaviors.
+- and execution behaviors
 
 Additional work demonstrates that reverse engineering techniques may recover:
 
-- model architectures,
+- model architectures
 
-- hyperparameters,
+- hyperparameters
 
-- layer relationships,
+- layer relationships
 
-- and internal execution logic from deployed binaries.
+- and internal execution logic from deployed binaries
 
-Modern ML frameworks rely heavily on native libraries implemented in C and C++, making them suitable targets for binary analysis and reverse engineering tools such as Ghidra and IDA Pro. Furthermore, the growing complexity of TensorFlow and similar frameworks introduces opaque execution layers that are difficult to analyze through source-level inspection alone.
+Modern ML /DL frameworks rely heavily on native libraries implemented in C and C++, making them suitable targets for binary analysis and reverse engineering tools such as Ghidra and IDA Pro. Furthermore, the growing complexity of TensorFlow and similar frameworks introduces opaque execution layers that are difficult to analyze through source-level inspection alone.
 
 These findings support the feasibility of applying reverse engineering methodologies to machine learning software ecosystems as part of a broader security analysis framework.
 
@@ -1046,29 +1047,29 @@ These findings support the feasibility of applying reverse engineering methodolo
 
 Machine learning systems introduce security risks across the entire software lifecycle, including:
 
-- data collection,
+- data collection
 
-- model training,
+- model training
 
-- model serialization,
+- model serialization
 
-- deployment,
+- deployment
 
-- inference,
+- inference
 
-- and runtime execution.
+- and runtime execution
 
 Threat modeling research demonstrates that vulnerabilities may propagate across multiple layers of ML ecosystems, including:
 
-- application code,
+- application code
 
-- framework libraries,
+- framework libraries
 
-- serialized computational graphs,
+- serialized computational graphs
 
-- native binaries,
+- native binaries
 
-- and infrastructure environments.
+- and infrastructure environments
 
 Training-phase attacks such as data poisoning and malicious model injection can compromise model integrity before deployment. During deployment, serialized artifacts such as TensorFlow SavedModel files may contain hidden operators or malicious execution logic. Runtime environments further introduce risks associated with GPU execution, distributed processing, and hardware acceleration.
 
@@ -1080,13 +1081,13 @@ These observations reinforce the need for lifecycle-oriented security methodolog
 
 Testing deep learning systems presents unique challenges due to:
 
-- nondeterministic execution,
+- nondeterministic execution
 
-- numerical instability,
+- numerical instability
 
-- hardware acceleration,
+- hardware acceleration
 
-- and complex runtime behavior.
+- and complex runtime behavior
 
 Traditional software testing approaches are often insufficient because many machine learning failures do not produce explicit exceptions or deterministic outputs. As a result, researchers have proposed specialized testing methodologies for deep learning systems.
 
@@ -1094,27 +1095,27 @@ Fuzzing techniques have been applied to machine learning frameworks to identify 
 
 Additional research has explored:
 
-- mutation testing,
+- mutation testing
 
-- differential testing,
+- differential testing
 
-- metamorphic testing,
+- metamorphic testing
 
-- and runtime validation techniques for ML systems.
+- and runtime validation techniques for ML systems
 
 Mutation testing evaluates whether testing frameworks can detect intentionally modified defects, while differential testing compares outputs across multiple implementations or execution environments. Metamorphic testing validates expected behavioral relationships between transformed inputs and outputs.
 
 These approaches demonstrate that effective machine learning security analysis requires a combination of:
 
-- static analysis,
+- static analysis
 
-- dynamic analysis,
+- dynamic analysis
 
-- runtime validation,
+- runtime validation
 
-- behavioral monitoring,
+- behavioral monitoring
 
-- and cross-layer inspection techniques.
+- and cross-layer inspection techniques
 
 Consequently, comprehensive testing methodologies represent an important component of secure machine learning software engineering.
 
@@ -1122,43 +1123,43 @@ Consequently, comprehensive testing methodologies represent an important compone
 
 ## **9.1 Overview**
 
-To evaluate the feasibility of the proposed multilayer security analysis framework, a preliminary study was conducted using a basic image recognition application implemented in Python. The objective of this study is to demonstrate how vulnerabilities and security-relevant characteristics can be identified across multiple layers of a machine learning (ML) software stack, including Python source code, third-party libraries, and native binary components.
+To evaluate the feasibility of the proposed multilayer security analysis framework, a preliminary study was conducted using a basic deep learning image classification application implemented in Python using TensorFlow/Keras and a Convolutional Neural Network (CNN). Although deep learning (DL) is itself a subset of machine learning (ML), the experimental workload is more precisely characterized as deep learning because its decisive component is a multilayer neural-network architecture (a CNN) that learns image features directly from pixel data through backpropagation, rather than relying on manually engineered features. This distinction allows the dissertation to keep its research domain broadly framed as **machine learning software security** while defining a specific and reproducible **deep learning / CNN workload** as the experimental case study. The objective of this study is to demonstrate how vulnerabilities and security-relevant characteristics can be identified across multiple layers of a machine learning / deep learning software stack, including Python source code, third-party libraries, and native binary components.
 
-The study focuses on analyzing widely used ML frameworks—specifically TensorFlow, Keras, and NumPy—which are representative of modern deep learning ecosystems and are known to rely heavily on native C and C++ implementations.
+The study focuses on analyzing widely used ML / DL frameworks—specifically TensorFlow, Keras, and NumPy—which are representative of modern deep learning ecosystems and are known to rely heavily on native C and C++ implementations.
 
 ## **9.2 Experimental Setup**
 
-To evaluate the feasibility of the proposed Unified Multilayer Security Analysis Framework (UMSAF), a preliminary experimental environment was developed using a simplified convolutional neural network (CNN) application implemented in Python with TensorFlow and Keras. The purpose of this experimental setup is to provide a controlled and reproducible machine learning application suitable for dependency analysis, SBOM generation, vulnerability assessment, binary extraction, reverse engineering, and cross-layer interaction analysis.
+To evaluate the feasibility of the proposed Unified Multilayer Security Analysis Framework (UMSAF), a preliminary experimental environment was developed using a simplified Convolutional Neural Network (CNN) application implemented in Python with TensorFlow and Keras. This application performs supervised deep learning for multiclass image classification. The purpose of this experimental setup is to provide a controlled and reproducible deep learning application suitable for dependency analysis, SBOM generation, vulnerability assessment, binary extraction, reverse engineering, and cross-layer interaction analysis.
 
-The experimental application utilizes the CIFAR-10 dataset, a widely used benchmark dataset for image classification research. CIFAR-10 contains 60,000 color images distributed across 10 object categories and is commonly used for evaluating deep learning models and machine learning frameworks.
+The experimental application utilizes the CIFAR-10 dataset (https://www.kaggle.com/c/cifar-10), a widely used benchmark dataset for image classification research. CIFAR-10 contains 60,000 color images distributed across 10 object categories and is commonly used for evaluating deep learning models and machine learning frameworks.
 
 The preliminary CNN application performs the following operations:
 
-- dataset loading,
+- dataset loading
 
-- data normalization,
+- data normalization
 
-- convolutional neural network construction,
+- convolutional neural network construction
 
-- model compilation,
+- model compilation
 
-- and supervised training.
+- and supervised training
 
 Although intentionally simplified, the application is sufficient to trigger interactions across multiple machine learning ecosystem layers, including:
 
-- Python application code,
+- Python application code
 
-- TensorFlow and Keras framework APIs,
+- TensorFlow and Keras framework APIs
 
-- serialized model structures,
+- serialized model structures
 
-- native C/C++ libraries,
+- native C/C++ libraries
 
-- and runtime execution components.
+- and runtime execution components
 
 The following experimental application was used throughout the preliminary study.
 
-Listing 1 — Preliminary CNN Experimental Application
+Listing 1 — Preliminary Deep Learning (CNN) Experimental Application
 
 import tensorflow as tf
 
@@ -1208,83 +1209,83 @@ metrics=\['accuracy'\]
 
 model.fit(x_train, y_train, epochs=2)
 
-The application serves as the entry point for multilayer security analysis and enables observation of interactions between high-level Python APIs and underlying native machine learning framework components. During execution, TensorFlow and Keras invoke multiple native binaries, dynamically linked libraries, runtime execution engines, and hardware-acceleration modules that can subsequently be analyzed using dependency analysis, SBOM generation, binary extraction, reverse engineering, and runtime tracing techniques.
+The application serves as the entry point for multilayer security analysis and enables observation of interactions between high-level Python APIs and underlying native deep learning framework components. During execution, TensorFlow and Keras invoke multiple native binaries, dynamically linked libraries, runtime execution engines, and hardware-acceleration modules that can subsequently be analyzed using dependency analysis, SBOM generation, binary extraction, reverse engineering, and runtime tracing techniques.
 
 This experimental setup therefore provides a practical foundation for evaluating the proposed multilayer security analysis methodology across modern machine learning software ecosystems
 
 **9.2.1 Experimental Environment**
 
-The preliminary experiments conducted in this research utilized a controlled machine learning analysis environment designed to support dependency analysis, vulnerability scanning, binary extraction, reverse engineering, runtime inspection, and serialized model analysis.
+The preliminary experiments conducted in this research utilized a controlled deep learning analysis environment designed to support dependency analysis, vulnerability scanning, binary extraction, reverse engineering, runtime inspection, and serialized model analysis.
 
 The experimental environment consisted primarily of Linux-based systems due to the widespread use of Linux within machine learning development, cloud deployment, and scientific computing environments. The primary analysis platform utilized Ubuntu 24.04 LTS running on x86_64 architecture.
 
 The machine learning software stack included:
 
-- Python 3.12,
+- Python 3.12
 
-- TensorFlow 2.18,
+- TensorFlow 2.18
 
-- Keras 3.x,
+- Keras 3.x
 
-- NumPy 2.x,
+- NumPy 2.x
 
-- and supporting scientific computing libraries commonly used within modern machine learning ecosystems.
+- and supporting scientific computing libraries commonly used within modern machine learning ecosystems
 
-Additional experimental configurations may include PyTorch and ONNX environments for comparative analysis and framework interoperability testing.
+Additional experimental configurations may include PyTorch and ONNX (Open Neural Network Exchange) environments for comparative analysis and framework interoperability testing.
 
 Reverse engineering and binary analysis activities were performed using:
 
-- Ghidra 11.x,
+- Ghidra 11.x
 
-- objdump,
+- objdump
 
-- readelf,
+- readelf
 
-- strings,
+- strings
 
-- dependency inspection utilities,
+- dependency inspection utilities
 
-- and additional Linux binary-analysis tools.
+- and additional Linux binary-analysis tools
 
 Software dependency analysis and SBOM generation utilized:
 
-- pip dependency inspection,
+- pip dependency inspection
 
-- CycloneDX SBOM tooling,
+- CycloneDX SBOM tooling
 
-- pip-audit,
+- pip-audit
 
-- OSV vulnerability feeds,
+- OSV vulnerability feeds
 
-- CVE/NVD databases,
+- CVE/NVD databases
 
-- and software composition analysis techniques.
+- and software composition analysis techniques
 
 The experimental environment also incorporated isolated virtual environments and containerized execution contexts to improve reproducibility and reduce contamination between experiments. Where applicable, Docker-based environments were used to reproduce framework-specific runtime behavior and dependency configurations.
 
 Hardware acceleration support was enabled in selected experiments through NVIDIA GPU infrastructure and CUDA runtime libraries in order to analyze:
 
-- GPU-related execution paths,
+- GPU-related execution paths
 
-- hardware-accelerated tensor operations,
+- hardware-accelerated tensor operations
 
-- runtime dependency loading,
+- runtime dependency loading
 
-- and framework interactions with hardware acceleration layers.
+- and framework interactions with hardware acceleration layers
 
-The preliminary study utilized a basic image-recognition application based on the CIFAR-10 dataset to evaluate:
+The preliminary study utilized a basic deep learning image classification application (CNN) based on the CIFAR-10 dataset to evaluate:
 
-- dependency resolution,
+- dependency resolution
 
-- SBOM generation,
+- SBOM generation
 
-- vulnerability discovery,
+- vulnerability discovery
 
-- native library extraction,
+- native library extraction
 
-- computational graph analysis,
+- computational graph analysis
 
-- and runtime behavior tracing.
+- and runtime behavior tracing
 
 This experimental environment provides a reproducible and extensible platform for evaluating the proposed Unified Multilayer Security Analysis Framework (UMSAF) across multiple machine learning frameworks, dependency ecosystems, runtime environments, and binary execution layers.
 
@@ -1308,7 +1309,7 @@ An SBOM was generated to capture:
 
 - Distribution artifacts (wheels)
 
-This step demonstrates that even simple ML programs rely on **complex and deep dependency chains**, supporting prior findings that ML systems have extensive software supply chains .
+This step demonstrates that even simple deep learning programs rely on **complex and deep dependency chains**, supporting prior findings that ML / DL systems have extensive software supply chains .
 
 ## **9.4 Vulnerability Scanning**
 
@@ -1326,11 +1327,11 @@ Dependency scanning tools were applied to identify known vulnerabilities using C
 
 - Some vulnerabilities originated from components not directly used in the application code
 
-These findings align with prior research showing that vulnerabilities in ML libraries are widespread and often hidden within dependency chains
+These findings align with prior research showing that vulnerabilities in ML / DL libraries are widespread and often hidden within dependency chains
 
 ## **9.5 Binary Extraction and Analysis**
 
-A key focus of this study was extracting and analyzing native binary components embedded in ML frameworks.
+A key focus of this study was extracting and analyzing native binary components embedded in ML / DL frameworks.
 
 ### **Process:**
 
@@ -1368,7 +1369,7 @@ Selected binaries were analyzed using Ghidra.
 
 ### **Observations:**
 
-- Complex native functions handle core ML computations
+- Complex native functions handle core ML / DL computations
 
 - External libraries are dynamically linked
 
@@ -1400,7 +1401,7 @@ This confirms that:
 
 - Security risks may originate in lower layers
 
-This multilayer interaction aligns with prior findings that ML systems require holistic analysis across layers
+This multilayer interaction aligns with prior findings that ML / DL systems require holistic analysis across layers
 
 ## **9.8 Preliminary Findings**
 
@@ -1408,7 +1409,7 @@ The preliminary study reveals several important insights:
 
 ### **1. Hidden Complexity**
 
-Even simple ML programs depend on large and complex ecosystems.
+Even simple deep learning programs depend on large and complex ecosystems.
 
 ### **2. Native Code Dominance**
 
@@ -1426,7 +1427,7 @@ Traditional tools do not provide full visibility into:
 
 - Cross-layer interactions
 
-This aligns with prior findings that static analysis tools are largely ineffective for ML libraries .
+This aligns with prior findings that static analysis tools are largely ineffective for ML / DL libraries .
 
 ## **9.9 Implications for Proposed Research**
 
@@ -1833,7 +1834,7 @@ The framework will be evaluated on multiple categories of ML systems:
 
 #### **Category A — Controlled Experimental Programs**
 
-- Basic image recognition applications (e.g., CIFAR-10 CNN)
+- Basic deep learning image classification applications (e.g., CIFAR-10 CNN)
 
 - Synthetic test cases with injected vulnerabilities
 
