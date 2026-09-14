@@ -1226,12 +1226,12 @@ The intentionally simplified workload therefore provides a practical foundation 
 
 The preliminary experiments utilize a controlled deep learning analysis environment designed to support dependency analysis, vulnerability scanning, binary extraction, reverse engineering, serialized-model inspection, runtime analysis, and cross-layer security investigation.
 
-The primary experimental environment consists of a Linux-based system using **Ubuntu 24.04 LTS on x86_64 architecture**. Linux provides an appropriate experimental environment because it is widely used in ML/DL development, scientific computing, containerized environments, and cloud-based ML workloads.
+The primary experimental environment consists of a **Windows x86_64 system using CPython 3.12.10**. Windows is selected as the primary platform because it provides the controlled and reproducible environment currently used to implement and execute the UMSAF prototype. The platform choice defines the operating-system-specific scope of the empirical results; the broader UMSAF methodology remains applicable to other operating systems through platform-specific analysis adapters.
 
 The primary ML/DL software stack includes:
 
 * Python 3.12
-* TensorFlow 2.18
+* TensorFlow 2.21.0
 * Keras 3.x
 * NumPy 2.x
 * and supporting scientific-computing and framework dependencies.
@@ -1242,10 +1242,12 @@ Reverse engineering and binary-analysis capabilities include:
 
 * Ghidra 11.x
 * objdump
-* readelf
+* `pefile`
 * strings
-* dependency-inspection utilities
-* and related Linux binary-analysis tools.
+* Windows dependency-inspection utilities
+* and related Windows binary-analysis tools.
+
+The primary native-binary analysis targets Windows PE-format `.pyd` and `.dll` components. Linux ELF analysis is outside the primary experimental configuration and is not used as evidence for the results reported in this dissertation. A future Linux configuration may be evaluated as comparative work, but it is not required for the present UMSAF evaluation.
 
 Software composition, dependency, SBOM, and vulnerability-analysis capabilities include:
 
@@ -1327,9 +1329,9 @@ The binary-analysis process includes:
 
 Relevant binary formats may include:
 
-* `.so` shared objects on Linux
 * `.pyd` Python extension modules on Windows
 * `.dll` dynamic libraries on Windows
+* `.so` shared objects on Linux for future comparative configurations
 * and other compiled framework or dependency components.
 
 Preliminary inspection identifies substantial compiled functionality associated with the ML/DL environment. TensorFlow contains native framework components, including internal wrapper functionality, while NumPy contains compiled extensions supporting numerical operations.
@@ -1356,7 +1358,7 @@ The preliminary reverse engineering process focuses on characteristics such as:
 * native interfaces
 * and low-level computational functionality.
 
-Ghidra provides a primary reverse engineering environment for examining selected native components, supplemented by utilities such as objdump, readelf, strings, and dependency-analysis tools.
+Ghidra provides a primary reverse engineering environment for examining selected native components, supplemented by `pefile`, strings, Windows dependency-inspection utilities, and other platform-appropriate binary-analysis tools. The primary analysis concerns PE-format binaries; ELF-oriented tools such as `readelf` may be used only in future comparative Linux experiments.
 
 The objective is not to reverse engineer the complete TensorFlow codebase. Such an undertaking would be unnecessarily broad for the purpose of this dissertation. Instead, reverse engineering is used selectively to investigate native components and execution paths that are relevant to security findings identified through dependency, vulnerability, model, or runtime analysis.
 
@@ -2006,11 +2008,12 @@ Potential sources and tools include:
 Potential tools include:
 
 * Ghidra
-* objdump
-* readelf
+* `pefile`
 * strings
-* native dependency-inspection utilities
+* Windows dependency-inspection utilities
 * and related platform-specific binary-analysis tools.
+
+The implementation is platform-specific at the binary-analysis boundary. The primary Windows implementation fingerprints and characterizes PE-format `.pyd` and `.dll` components, while the UMSAF evidence schema and cross-layer analysis are designed to support additional binary formats in future configurations.
 
 ### Serialized Model Analysis
 

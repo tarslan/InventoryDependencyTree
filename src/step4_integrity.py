@@ -148,7 +148,8 @@ def parse_lockfile(path: Path) -> list[tuple[str, str]]:
             continue
         if "==" in line:
             name, version = line.split("==", 1)
-            packages.append((name.strip(), version.strip()))
+            version = version.split(" ", 1)[0].rstrip("\\").strip()
+            packages.append((name.strip(), version))
     return packages
 
 

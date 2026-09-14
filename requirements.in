@@ -1,0 +1,13 @@
+# Direct dependencies for the Windows x86_64 / CPython 3.12.10 security-analysis baseline.
+# Regenerate requirements-lock.txt with:
+# .\.venv\Scripts\pip-compile.exe --generate-hashes --strip-extras --output-file requirements-lock.txt requirements.in
+numpy==2.4.4
+tensorflow==2.21.0
+requests==2.33.1
+pipdeptree==2.35.1
+pip-audit==2.10.0
+bandit==1.9.4
+ruff==0.15.11
+pefile==2024.8.26
+pip==26.2.1
+setuptools==84.0.0

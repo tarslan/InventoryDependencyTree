@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=82.0.1", "wheel>=0.46.3"]
+requires = ["setuptools==84.0.0", "wheel==0.46.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +7,7 @@ name = "ml-security-scanner"
 version = "0.1.0"
 description = "ML/DL Program Security Pipeline: Dependency Tree, Vulnerability Scanning, SBOM Generation, Integrity/Provenance Verification"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = "==3.12.10"
 authors = [
     { name = "Research Team", email = "research@example.com" }
 ]
@@ -26,9 +26,14 @@ classifiers = [
 ]
 
 dependencies = [
-    "pip>=26.0.1",
-    "setuptools>=82.0.1",
-    "wheel>=0.46.3"
+    "numpy==2.4.4",
+    "tensorflow==2.21.0",
+    "requests==2.33.1",
+    "pipdeptree==2.35.1",
+    "pip-audit==2.10.0",
+    "bandit==1.9.4",
+    "ruff==0.15.11",
+    "pefile==2024.8.26"
 ]
 
 [project.optional-dependencies]

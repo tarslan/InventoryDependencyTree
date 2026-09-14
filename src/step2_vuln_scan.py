@@ -39,7 +39,7 @@ def parse_pinned_requirements(lockfile: Path) -> list[dict[str, str]]:
 
         name, version = s.split("==", 1)
         name = name.strip()
-        version = version.strip()
+        version = version.split(" ", 1)[0].rstrip("\\").strip()
 
         if not name or not version:
             continue

@@ -32,8 +32,9 @@ InventoryDependencyTree/
 │   └── wheelhouse/              # Extracted binaries
 ├── tests/                        # Test suite
 ├── image_recognition_basic.py   # Example ML program (test target)
-├── requirements-lock.txt         # Fully resolved dependencies (platform-specific)
-├── requirements.txt              # Main dependencies (generated from freeze)
+├── requirements.in               # Auditable, direct dependency inputs
+├── requirements-lock.txt         # Hash-verified, resolved dependency closure
+├── requirements.txt              # Compatibility alias for the lockfile
 ├── pyproject.toml               # Project metadata + tool config
 └── README.md                     # This file
 ```
@@ -41,31 +42,44 @@ InventoryDependencyTree/
 ## Environment Setup
 
 ### Prerequisites
-- Python 3.12+ 
-- Virtual environment (included: `.venv/`)
+- CPython 3.12.10 on Windows x86_64
+- A new virtual environment; do not reuse an unrelated environment
 
 ### Install Dependencies
 
 ```bash
-# Activate virtual environment (Windows)
+# Create and activate the recorded baseline (Windows PowerShell)
+py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 
-# Or (Unix/macOS)
-source .venv/bin/activate
+# Install only the hash-verified dependency closure
+python -m pip install --require-hashes -r requirements-lock.txt
 
-# Install from lock file (reproducible)
-pip install -r requirements-lock.txt
+# Confirm dependency metadata is internally consistent
+python -m pip check
 ```
 
-## Step 0: Deterministic Resolution
+## Step 0: Deterministic Resolution Foundation
 
-The foundation of the pipeline is a **fully resolved, pinned environment**:
+The foundation is a **fully resolved, hash-verified environment** for one declared platform baseline:
 
-- **`requirements-lock.txt`** — All 165 transitive dependencies pinned to exact versions
-- **Python 3.12.10** — Isolated virtual environment
-- **Platform-aware** — Windows wheels (win_amd64); use `pip-compile` or `uv` for cross-platform locks
+- **`requirements.in`** — the auditable list of direct application and pipeline dependencies
+- **`requirements-lock.txt`** — the complete transitive closure, pinned to exact versions and protected by SHA-256 hashes
+- **CPython 3.12.10 / Windows x86_64** — the exact, tested interpreter and platform baseline
+- **`--require-hashes` installation** — `pip` rejects artifacts that do not match a lockfile hash
+- **`pip check` validation** — confirms installed package metadata has no unsatisfied requirements
 
-This ensures vulnerability scanners (OSV, pip-audit) have complete version information.
+This gives the vulnerability, SBOM, integrity, static-analysis, and binary-extraction stages the same dependency identities on every clean installation of this baseline. The lock is intentionally a Windows/CPython 3.12.10 baseline; a separate lock must be generated and validated for each additional platform or Python version.
+
+### Updating the Baseline
+
+Dependency updates are deliberate changes to `requirements.in`. Regenerate the lock with CPython 3.12.10 and `pip-tools`, review the resulting diff, then validate it before committing:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install pip-tools==7.5.3
+.\.venv\Scripts\pip-compile.exe --generate-hashes --allow-unsafe --strip-extras --output-file requirements-lock.txt requirements.in
+.\.venv\Scripts\python.exe -m pip install --dry-run --require-hashes -r requirements-lock.txt
+```
 
 ## Next Steps
 
